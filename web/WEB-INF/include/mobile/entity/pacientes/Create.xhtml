@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PacientesCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePacientesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PacientesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PacientesCreateForm">
+
+                <h:panelGroup id="display" rendered="#{pacientesController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePacientesLabel_idpacientes}" for="idpacientes" />
+                            <p:inputText id="idpacientes" value="#{pacientesController.selected.idpacientes}" title="#{myBundle.CreatePacientesTitle_idpacientes}" required="true" requiredMessage="#{myBundle.CreatePacientesRequiredMessage_idpacientes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePacientesLabel_carnet}" for="carnet" />
+                            <p:inputText id="carnet" value="#{pacientesController.selected.carnet}" title="#{myBundle.CreatePacientesTitle_carnet}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePacientesLabel_cedula}" for="cedula" />
+                            <p:inputText id="cedula" value="#{pacientesController.selected.cedula}" title="#{myBundle.CreatePacientesTitle_cedula}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePacientesLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{pacientesController.selected.estado}" title="#{myBundle.CreatePacientesTitle_estado}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePacientesLabel_nombre}" for="nombre" />
+                            <p:inputText id="nombre" value="#{pacientesController.selected.nombre}" title="#{myBundle.CreatePacientesTitle_nombre}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePacientesLabel_tipo}" for="tipo" />
+                            <p:inputText id="tipo" value="#{pacientesController.selected.tipo}" title="#{myBundle.CreatePacientesTitle_tipo}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{pacientesController.saveNew}" value="#{myBundle.Save}" update="display,:PacientesListPage:PacientesListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PacientesListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

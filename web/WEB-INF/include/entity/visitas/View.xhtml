@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VisitasViewDlg" widgetVar="VisitasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewVisitasTitle}" closeOnEscape="true">
+
+            <h:form id="VisitasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{visitasController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_idVisita}"/>
+                        <h:outputText value="#{visitasController.selected.idVisita}" title="#{myBundle.ViewVisitasTitle_idVisita}"/>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_medico}"/>
+                        <h:outputText value="#{visitasController.selected.medico}" title="#{myBundle.ViewVisitasTitle_medico}"/>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_paciente}"/>
+                        <h:outputText value="#{visitasController.selected.paciente}" title="#{myBundle.ViewVisitasTitle_paciente}"/>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_fecha}"/>
+                        <h:outputText value="#{visitasController.selected.fecha}" title="#{myBundle.ViewVisitasTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_hora}"/>
+                        <h:outputText value="#{visitasController.selected.hora}" title="#{myBundle.ViewVisitasTitle_hora}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_sintomas}"/>
+                        <h:outputText value="#{visitasController.selected.sintomas}" title="#{myBundle.ViewVisitasTitle_sintomas}"/>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_medicamento}"/>
+                        <h:outputText value="#{visitasController.selected.medicamento}" title="#{myBundle.ViewVisitasTitle_medicamento}"/>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_recomendaciones}"/>
+                        <h:outputText value="#{visitasController.selected.recomendaciones}" title="#{myBundle.ViewVisitasTitle_recomendaciones}"/>
+
+                        <h:outputText value="#{myBundle.ViewVisitasLabel_estado}"/>
+                        <p:selectBooleanCheckbox id="estado" value="#{visitasController.selected.estado}" title="#{myBundle.EditVisitasTitle_estado}" required="true" requiredMessage="#{myBundle.EditVisitasRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('VisitasViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VisitasCreateDlg" widgetVar="VisitasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateVisitasTitle}" closeOnEscape="true">
+
+            <h:form id="VisitasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{visitasController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_medico}" for="medico" />
+                        <p:inputText id="medico" value="#{visitasController.selected.medico}" title="#{myBundle.CreateVisitasTitle_medico}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_paciente}" for="paciente" />
+                        <p:inputText id="paciente" value="#{visitasController.selected.paciente}" title="#{myBundle.CreateVisitasTitle_paciente}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_paciente}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{visitasController.selected.fecha}" title="#{myBundle.CreateVisitasTitle_fecha}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_fecha}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_hora}" for="hora" />
+                        <p:calendar id="hora" pattern="HH:mm:ss" value="#{visitasController.selected.hora}" title="#{myBundle.CreateVisitasTitle_hora}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_hora}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_sintomas}" for="sintomas" />
+                        <p:inputText id="sintomas" value="#{visitasController.selected.sintomas}" title="#{myBundle.CreateVisitasTitle_sintomas}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_sintomas}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_medicamento}" for="medicamento" />
+                        <p:inputText id="medicamento" value="#{visitasController.selected.medicamento}" title="#{myBundle.CreateVisitasTitle_medicamento}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_medicamento}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_recomendaciones}" for="recomendaciones" />
+                        <p:inputText id="recomendaciones" value="#{visitasController.selected.recomendaciones}" title="#{myBundle.CreateVisitasTitle_recomendaciones}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_recomendaciones}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateVisitasLabel_estado}" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{visitasController.selected.estado}" required="true" requiredMessage="#{myBundle.CreateVisitasRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{visitasController.saveNew}" value="#{myBundle.Save}" update="display,:VisitasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('VisitasCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('VisitasCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

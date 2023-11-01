@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FarmacosViewDlg" widgetVar="FarmacosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewFarmacosTitle}" closeOnEscape="true">
+
+            <h:form id="FarmacosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{farmacosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewFarmacosLabel_idFarmacos}"/>
+                        <h:outputText value="#{farmacosController.selected.idFarmacos}" title="#{myBundle.ViewFarmacosTitle_idFarmacos}"/>
+
+                        <h:outputText value="#{myBundle.ViewFarmacosLabel_descripcion}"/>
+                        <h:outputText value="#{farmacosController.selected.descripcion}" title="#{myBundle.ViewFarmacosTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewFarmacosLabel_estado}"/>
+                        <p:selectBooleanCheckbox id="estado" value="#{farmacosController.selected.estado}" title="#{myBundle.EditFarmacosTitle_estado}" required="true" requiredMessage="#{myBundle.EditFarmacosRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('FarmacosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

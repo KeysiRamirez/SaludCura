@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="VisitasViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewVisitasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:VisitasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="VisitasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{visitasController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_idVisita}"/>
+                            <h:outputText value="#{visitasController.selected.idVisita}" title="#{myBundle.ViewVisitasTitle_idVisita}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_medico}"/>
+                            <h:outputText value="#{visitasController.selected.medico}" title="#{myBundle.ViewVisitasTitle_medico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_paciente}"/>
+                            <h:outputText value="#{visitasController.selected.paciente}" title="#{myBundle.ViewVisitasTitle_paciente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_fecha}"/>
+                            <h:outputText value="#{visitasController.selected.fecha}" title="#{myBundle.ViewVisitasTitle_fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_hora}"/>
+                            <h:outputText value="#{visitasController.selected.hora}" title="#{myBundle.ViewVisitasTitle_hora}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_sintomas}"/>
+                            <h:outputText value="#{visitasController.selected.sintomas}" title="#{myBundle.ViewVisitasTitle_sintomas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_medicamento}"/>
+                            <h:outputText value="#{visitasController.selected.medicamento}" title="#{myBundle.ViewVisitasTitle_medicamento}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_recomendaciones}"/>
+                            <h:outputText value="#{visitasController.selected.recomendaciones}" title="#{myBundle.ViewVisitasTitle_recomendaciones}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewVisitasLabel_estado}"/>
+                            <h:selectBooleanCheckbox id="estado" value="#{visitasController.selected.estado}" title="#{myBundle.EditVisitasTitle_estado}" required="true" requiredMessage="#{myBundle.EditVisitasRequiredMessage_estado}" disabled="true"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
